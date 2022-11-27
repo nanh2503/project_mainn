@@ -1,0 +1,17 @@
+.list-user-container{
+    button{
+        cursor: pointer;
+    }
+
+    .list-user-content {
+        width: 400px;
+        margin: 0 auto;
+
+        .child {
+            height: 40px;
+            border: 1px solid pink;
+            margin: 10px;
+        }
+
+    }
+}
