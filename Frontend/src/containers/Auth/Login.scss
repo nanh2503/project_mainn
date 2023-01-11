@@ -1,0 +1,115 @@
+.login-background{
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
+}
+
+.login-container{
+    width: 300px;
+    border-radius: 20px;
+    background-color: white;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 500px;
+    
+    .login-content{
+        padding: 30px;
+
+        .text-login{
+            text-align: center;
+            font-weight: 600;
+            font-size: 25px;
+            padding-top: 10px;
+        }
+
+        .login-input{
+            margin-top: 30px;
+            margin-bottom: 20px;
+            
+            .eye-show-password{
+                position: relative;
+
+                i{
+                    position: absolute;
+                    right: 7px;
+                    top: 10px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .btn-login{
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            height: 30px;
+            border-radius: 15px;
+            outline: none;
+            border: none;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
+        }
+
+        .forgot-password{
+            font-size: 12px;
+        }
+
+        .orsignin{
+            margin-top: 50px;
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .social-login{
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            margin-top: 10px;
+            .google{
+                font-size: 20px;
+                background: #c63f3f;
+                border-radius: 50%;
+                height: 40px;
+                width: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+               
+            }
+
+            .facebook{
+                font-size: 23px;
+                background: #2c4573;
+                border-radius: 50%;
+                height: 40px;
+                width: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                margin-right: 15px ;
+            }
+
+            .twitter{
+                font-size: 23px;
+                background: #718be6;
+                border-radius: 50%;
+                height: 40px;
+                width: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                margin-right: 15px ;
+            }
+        }
+    }
+
+}

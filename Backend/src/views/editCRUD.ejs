@@ -1,0 +1,56 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User's Information</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <form action="/put-crud" method="POST">
+                <div class="form-row">
+                    <div
+                        style=" font-size: 20px; text-align: center; margin-top: 20px; margin-bottom: 20px; font-weight: bold;">
+                        EDIT USER'S INFORMATION
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4"> Full name </label>
+                        <input type="text" class="form-control" placeholder="fullname" name="fullname"
+                            value="<%= userData.fullname %>">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Code</label>
+                        <input type="text" class="form-control" name="code" placeholder="code"
+                            value="<%= userData.code %>">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Node</label>
+                        <input type="text" class="form-control" name="node" placeholder="node"
+                            value="<%= userData.node %>">
+                    </div>
+                </div>
+
+                <input name="id" value="<%= userData.id %>" type="text" hidden />
+
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

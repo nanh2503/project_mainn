@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display CRUD</title>
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+    <table style=" width: 100%">
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Full Name</th>
+            <th>Phone Number</th>
+            <th>Code</th>
+            <th>Node</th>
+            <th>Action</th>
+        </tr>
+
+        <% for(let i=0; i < data.length; i++) { %>
+            <tr style="height:30px;">
+                <td style="text-align: center;">
+                    <%= data[i].id %>
+                </td>
+                <td>
+                    <%= data[i].email %>
+                </td>
+                <td>
+                    <%= data[i].fullname %>
+                </td>
+                <td>
+                    <%= data[i].phonenum %>
+                </td>
+                <td>
+                    <%= data[i].code %>
+                </td>
+                <td>
+                    <%= data[i].node %>
+                </td>
+                <td>
+                    <a href="/edit-crud?id=<%=data[i].id %>" style="cursor: pointer;" type="button">Edit</a>
+                    <a href="/delete-crud?id=<%=data[i].id %>" style="cursor: pointer;" type="button">Delete</a>
+                </td>
+            </tr>
+            <% } %>
+    </table>
+</body>
+
+</html>
