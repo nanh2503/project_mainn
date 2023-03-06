@@ -1,9 +1,11 @@
+//To specify the paths to specific files required by Sequelize.
+
 const path = require('path');
 
 module.exports = {
-    'config': path.resolve('./src/config', 'config.json'),
-    'migrations-path': path.resolve('./src', 'migrations'),
-    'models-path': path.resolve('./src', 'models'),
-    'seeders-path': path.resolve('./src', 'seeders')
+    'config': path.resolve('./src/config', 'config.json'),      //How to connect to DB?
+    'migrations-path': path.resolve('./src', 'migrations'),     //Create table in DB
+    'models-path': path.resolve('./src', 'models'),     //Create Model
+    'seeders-path': path.resolve('./src', 'seeders')    //Create fake data
 
 }

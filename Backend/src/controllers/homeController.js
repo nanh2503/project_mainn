@@ -8,7 +8,7 @@ let getHomePage = async (req, res) => {
         console.log('------------------------')
         console.log(data)
         return res.render('homePage.ejs', {
-            data: JSON.stringify(data)
+            data: JSON.stringify(data)      //convert json data to string
         });
     } catch (e) {
         console.log(e)
@@ -65,6 +65,7 @@ let deleteCRUD = async (req, res) => {
     }
 }
 
+//object:{key, value}
 module.exports = {
     getHomePage: getHomePage,
     getCRUD: getCRUD,

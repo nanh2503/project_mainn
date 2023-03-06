@@ -1,4 +1,8 @@
 {
+    "homeheader": {
+        "usermanagement": "User Management",
+        "name": "Ngoc Anh"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",

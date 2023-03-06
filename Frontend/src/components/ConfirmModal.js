@@ -59,7 +59,7 @@ class ConfirmModal extends Component {
 
         return (
             <Modal isOpen={contentOfConfirmModal.isOpen} className='confirm-modal' centered={true}>
-                <div className="modal-header">
+                <div className="modal-">
                     <div className="modal-title">
                         <FormattedMessage id={"common.confirm"} />
                     </div>

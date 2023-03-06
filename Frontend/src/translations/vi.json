@@ -1,4 +1,8 @@
 {
+    "homeheader": {
+        "usermanagement": "Quản lý người dùng",
+        "name": "Ngọc Anh"
+    },
     "common": {
         "add": "Thêm",
         "edit": "Sửa",

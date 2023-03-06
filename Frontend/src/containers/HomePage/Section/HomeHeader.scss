@@ -1,0 +1,181 @@
+@import "../../../styles/common.scss";
+
+.home-container{
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    .home-header-container{
+        width: 100%;
+        height: 100%;
+        display: flex;  /**Các header con nằm trên cùng 1 hàng*/
+        position: sticky;
+        top: 0;
+
+        .left-header{
+            width: 20%;
+            text-align: center;
+            font-size:20px ;
+            color: white ;
+            background-color: #367fa9;
+
+             p{
+                text-align: center;
+                margin-top: 5px;
+            }
+        }
+        .center-header{
+            width: 55%;
+            display: flex;
+            background-color: #3c8dbc;
+            align-items: center;
+
+            .logo-right{
+                width: 100%;
+                margin-left: 300px;
+            }
+            
+            i{
+                width: 10%;
+                font-size: 20px;
+                color: white ;
+                margin-left: 5px;
+            }
+        }
+        .right-header{
+            width: 25%;
+            display: flex;
+            align-items: center;      
+            text-align: center;
+            background-color: #3c8dbc;
+
+            .avatar{
+                width: 30px;
+                height: 30px;
+                margin-left: 40px;
+                border-radius: 15px;
+            }
+
+            .name{
+                font-size: 18px;
+                color: white ;
+                margin-top: 15px;
+                margin-left: 10px;
+            }
+
+             .btn-logout {
+                color: $common-text-color;
+                line-height: 40px;
+                height: 40px;
+                margin-left: 30px;
+                margin-top: 3px;
+                &:hover {
+                    background-color: darken($colormain, 5);
+                }
+                i {
+                    font-size: $base-size + 1px;
+                }
+            }
+
+            .language-vi{
+                margin-left: 35px;
+                 margin-right: 3px;
+                cursor: pointer;
+                opacity: 0.2;
+                &.active{   //chuyển đổi ẩn hiện màu
+                    opacity: 1;      //làm mờ
+                    color: orange;
+                }
+                &:hover{    //khi  đưa chuột đến nó sẽ sáng
+                    opacity: 1;
+                }
+            }
+
+            .language-en{
+                margin: 0 5px;
+                cursor: pointer;
+                opacity: 0.2;
+                
+                &.active{   //chuyển đổi ẩn hiện màu
+                    opacity: 1;     //làm mờ
+                    color: blue;
+                }
+                &:hover{    //khi  đưa chuột đến nó sẽ sáng
+                    opacity: 1;
+                }
+            }
+
+        }
+    }
+
+ .home-content-container{
+            height: 100vh;
+            display: flex;
+            width: 100%;
+            
+             //background-color: rgb(241, 156, 170);
+        .home-content-left{
+            background: url('../../../assets/images/banner.jpg');
+           width: 20%;
+           height: 100%;
+           background-color: #222d32;
+           // Background Blur using backdrop-filter
+            .blur {
+                background: rgba(255, 255, 255, 0.1); // Make sure this color has an opacity of less than 1
+                backdrop-filter: blur(2px); // This be the blur
+                height: 100%;
+                width: 100%;
+            
+                .search{
+                    width: fit-content;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    margin-top: 70px;
+                    margin-left: 10px;
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-color:#F08080;
+                }
+
+                 input{
+                    height: 30px;
+                    width: 240px;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    
+                }
+        }
+        }
+        .home-content-right{
+            width: 80%;
+            height: 100%;
+            color: black;
+            // background-color: transparent;
+
+            .welcome{
+                font-weight: bold;
+                color: green;
+                margin-top: 60px;
+                font-size: 30px;
+                text-align: center;
+                
+            }
+            .add{
+                display: flex;
+                align-items: center;
+
+                
+
+                i{
+                    margin: 0 5px;
+
+                }
+
+               
+            }
+           
+        }
+    }
+}
