@@ -8,17 +8,17 @@ let createNewUser = async (data) => {
         try {
 
             let hashPasswordFromBcrypt = await hashUserPassword(data.password);
-            await db.User.create({
+            await db.users.create({
                 email: data.email,
                 password: hashPasswordFromBcrypt,
                 fullname: data.fullname,
                 code: data.code,
                 node: data.node,
-                roleid: data.roleid,
-                phonenum: data.phonenum
+                phonenum: data.phonenum,
+                image: data.image
             })
 
-            resolve('Create a new user successfully')
+            resolve('Create a new users successfully')
         } catch (e) {
             reject(e);
         }
@@ -39,7 +39,7 @@ let hashUserPassword = (password) => {
 let getAllUser = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let users = db.User.findAll({
+            let users = db.users.findAll({
                 raw: true,      //chỉ lấy những thông tin có trong bảng
             });
             resolve(users)
@@ -52,14 +52,14 @@ let getAllUser = () => {
 let getUserInforById = (userId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let user = await db.User.findOne({
+            let users = await db.users.findOne({
                 where: {
                     id: userId
                 },
                 raw: true,
             })
-            if (user) {
-                resolve(user)
+            if (users) {
+                resolve(users)
             }
             else {
                 resolve([])
@@ -73,15 +73,18 @@ let getUserInforById = (userId) => {
 let updateUserData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let user = await db.User.findOne({
-                where: { id: data.id }
+            let users = await db.users.findOne({
+                where: { id: data.id },
+                raw: false,
             })
-            if (user) {
-                user.fullname = data.fullname;
-                user.code = data.code;
-                user.node = data.node;
+            if (users) {
+                users.fullname = data.fullname;
+                users.code = data.code;
+                users.node = data.node;
+                users.phonenum = data.phonenum;
+                users.image = data.image;
 
-                await user.save();
+                await users.save();
                 resolve();
             } else {
                 resolve();
@@ -96,13 +99,13 @@ let updateUserData = (data) => {
 let deleteUserById = (userId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let user = await db.User.findOne({
+            let users = await db.users.findOne({
                 where: { id: userId },
                 raw: false
             })
 
-            if (user) {
-                await user.destroy();
+            if (users) {
+                await users.destroy();
             }
 
             resolve();

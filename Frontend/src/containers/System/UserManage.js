@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
 import { getAllUsers, createNewUserService, deleteUserService, editUserService } from '../../services/userService';
@@ -7,6 +7,8 @@ import ModalUser from './ModalUser';
 import { emitter } from '../../utils/emitter';
 import ModalEditUser from './ModalEditUser';
 import HomeHeader from '../HomePage/Section/HomeHeader';
+import { LANGUAGES } from '../../utils';
+import { changeLanguageApp } from '../../store/actions';
 
 class UserManage extends Component {
 
@@ -25,6 +27,11 @@ class UserManage extends Component {
         await this.getAllUserFromReact();
     }
 
+    changeLanguage = (language) => {
+        /**fire redux event: actions */
+        this.props.changeLanguageAppRedux(language)
+    }
+
     /**Hiển thị danh sách all users  */
     getAllUserFromReact = async () => {
         let response = await getAllUsers('All');
@@ -35,14 +42,16 @@ class UserManage extends Component {
         }
     }
 
-    /**Kiểm soát hiển thị modal add new user*/
+    /**Kiểm soát hiển thị modal add new users*/
     handleAddNewUser = () => {
+        console.log("Add new")
         this.setState({
             isOpenModalUser: true,
         })
+        console.log("add")
     }
 
-    /**Ẩn modal add new user */
+    /**Ẩn modal add new users */
     toggleUserModal = (data) => {
         this.setState({
             isOpenModalUser: !this.state.isOpenModalUser
@@ -51,6 +60,7 @@ class UserManage extends Component {
 
     /**lưu thông tin người dùng mới*/
     createNewUser = async (data) => {
+        console.log("go")
         try {
             let response = await createNewUserService(data)
             if (response && response.errCode !== 0) {
@@ -61,7 +71,7 @@ class UserManage extends Component {
                     isOpenModalUser: false
                 })
 
-                /**clear data in modal after add new user*/
+                /**clear data in modal after add new users*/
                 emitter.emit('EVENT_CLEAR_MODAL_DATA')
             }
         } catch (e) {
@@ -70,10 +80,9 @@ class UserManage extends Component {
     }
 
     /**Xóa người dùng */
-    handleDeleteUser = async (user) => {
-        console.log("delete user", user)
+    handleDeleteUser = async (users) => {
         try {
-            let res = await deleteUserService(user.id)
+            let res = await deleteUserService(users.id)
             if (res && res.errCode === 0) {
                 await this.getAllUserFromReact();
             } else {
@@ -85,26 +94,27 @@ class UserManage extends Component {
 
     }
 
-    /**cài đặt modal edit user và lấy thông tin users  */
-    handleEditUser = (user) => {
-        console.log('check edit user', user.id)
+    /**cài đặt modal edit users và lấy thông tin users  */
+    handleEditUser = (users) => {
+        console.log('check edit users', users.id)
         this.setState({
             isOpenModalEditUser: true,
-            userEdit: user
+            userEdit: users
         })
     }
 
-    /**Ẩn modal edit user  */
+    /**Ẩn modal edit users  */
     toggleEditUserModal = (data) => {
         this.setState({
             isOpenModalEditUser: !this.state.isOpenModalEditUser
         })
     }
 
-    /**Edit user function */
-    editUser = async (user) => {
+    /**Edit users function */
+    editUser = async (users) => {
+        console.log('hello')
         try {
-            let res = await editUserService(user)
+            let res = await editUserService(users)
             if (res && res.errCode === 0) {
                 this.setState({
                     isOpenModalEditUser: false
@@ -120,10 +130,12 @@ class UserManage extends Component {
 
     render() {
         let arrUsers = this.state.arrUsers;
+        let language = this.props.language;
 
         return (
             <>
                 <div className="users-container">
+
                     <ModalUser
                         isOpen={this.state.isOpenModalUser}
                         toggleParent={this.toggleUserModal}
@@ -139,11 +151,12 @@ class UserManage extends Component {
                             editUser={this.editUser}
                         />
                     }
+
                     <div className='add'>
                         <div className='mx-3'>
                             <button className='btn btn-success px-3'
                                 onClick={() => this.handleAddNewUser()}
-                            ><i class="fas fa-plus"></i>  Add new users </button>
+                            ><i class="fas fa-plus"></i><FormattedMessage id="homeheader.button" /> </button>
                         </div>
 
 
@@ -153,11 +166,12 @@ class UserManage extends Component {
                         <table id="customers">
                             <tr>
                                 <th>Email</th>
-                                <th>Full Name</th>
-                                <th>Phone Number</th>
-                                <th>Code</th>
-                                <th>Node</th>
-                                <th>Actions</th>
+                                <th><FormattedMessage id="homeheader.fullname" /></th>
+                                <th><FormattedMessage id="homeheader.phone" /></th>
+                                <th><FormattedMessage id="homeheader.code" /></th>
+                                <th><FormattedMessage id="homeheader.node" /></th>
+                                <th><FormattedMessage id="homeheader.action" /></th>
+
                             </tr>
 
                             {
@@ -191,13 +205,14 @@ class UserManage extends Component {
 
 const mapStateToProps = state => {
     return {
+        language: state.app.language,       //state of redux
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
     };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserManage);

@@ -23,29 +23,29 @@ let handleUserLogin = (email, password) => {
             let isExist = await checkUserEmail(email);
             if (isExist) {
 
-                //user already exist
-                let user = await db.User.findOne({
+                //users already exist
+                let users = await db.users.findOne({
 
                     where: { email: email },
-                    attributes: ['email', 'roleId', 'password'],
+                    attributes: ['id', 'email', 'password', 'fullname'],
                     raw: true
                 });
-                if (user) {
+                if (users) {
                     //compare password
-                    let check = await bcrypt.compareSync(password, user.password);
+                    let check = await bcrypt.compareSync(password, users.password);
 
                     if (check) {
                         userData.errCode = 0;
                         userData.errMessage = 'Login success';
-                        delete user.password;   //Ẩn password 
-                        userData.user = user;
+                        delete users.password;   //Ẩn password 
+                        userData.users = users;
                     } else {
                         userData.errCode = 3;
                         userData.errMessage = 'Password is not true';
                     }
                 } else {
                     userData.errCode = 2;
-                    userData.errMessage = "User is not found";
+                    userData.errMessage = "users is not found";
 
                 }
 
@@ -65,10 +65,10 @@ let handleUserLogin = (email, password) => {
 let checkUserEmail = (email) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let user = await db.User.findOne({
+            let users = await db.users.findOne({
                 where: { email: email }
             })
-            if (user) {
+            if (users) {
                 resolve(true);
             } else {
                 resolve(false);
@@ -84,14 +84,14 @@ let getAllUsers = (userId) => {
         try {
             let users = '';
             if (userId === 'All') {
-                users = await db.User.findAll({
+                users = await db.users.findAll({
                     attributes: {
                         exclude: ['password']
                     }
                 })
             }
             if (userId && userId !== 'All') {
-                users = await db.User.findOne({
+                users = await db.users.findOne({
                     where: { id: userId },
                     attributes: {
                         exclude: ['password']
@@ -120,14 +120,14 @@ let createNewUser = (data) => {
             }
             else {
                 let hashPasswordFromBcrypt = await hashUserPassword(data.password);
-                await db.User.create({
+                await db.users.create({
                     email: data.email,
                     password: hashPasswordFromBcrypt,
                     fullname: data.fullname,
                     code: data.code,
                     node: data.node,
-                    roleid: data.roleid,
-                    phonenum: data.phonenum
+                    phonenum: data.phonenum,
+                    image: data.image
                 })
 
                 resolve({
@@ -143,23 +143,23 @@ let createNewUser = (data) => {
 
 let deleteUser = (idInput) => {
     return new Promise(async (resolve, reject) => {
-        let user = await db.User.findOne({
+        let users = await db.users.findOne({
             where: { id: idInput }
         })
 
-        if (!user) {
+        if (!users) {
             resolve({
                 errCode: 2,
-                errMessage: 'The user is not exist'
+                errMessage: 'The users is not exist'
             })
         }
 
-        await db.User.destroy({
+        await db.users.destroy({
             where: { id: idInput }
         })
         resolve({
             errCode: 0,
-            message: 'The user is deleted'
+            message: 'The users is deleted'
         })
     })
 }
@@ -174,27 +174,30 @@ let updateUserData = (data) => {
                     errMessage: "Missing requied parameters"
                 })
             }
-            let user = await db.User.findOne({
+            let users = await db.users.findOne({
                 where: { id: data.id },
                 raw: false
             })
-            if (user) {
-                user.email = data.email;
-                user.fullname = data.fullname;
-                user.phonenum = data.phonenum;
-                user.code = data.code;
-                user.node = data.node;
+            if (users) {
+                users.email = data.email;
+                users.fullname = data.fullname;
+                users.phonenum = data.phonenum;
+                users.code = data.code;
+                users.node = data.node;
+                if (data.image) {
+                    users.image = data.image;
+                }
 
-                await user.save();
+                await users.save();
 
                 resolve({
                     errCode: 0,
-                    message: 'Update the user successful!'
+                    message: 'Update the users successful!'
                 });
             } else {
                 resolve({
                     errCode: 1,
-                    errMessage: 'User is not found!'
+                    errMessage: 'users is not found!'
                 });
             }
         } catch (e) {

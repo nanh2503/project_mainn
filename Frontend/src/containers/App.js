@@ -41,7 +41,7 @@ class App extends Component {
                     <div className="main-container">
 
                         <div className="content-container">
-                            <CustomScrollbars style={{ height: '1000px', width: '100%' }}>
+                            <CustomScrollbars style={{ height: '100vh', width: '100%' }}>
                                 <Switch>
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
@@ -68,7 +68,7 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         started: state.app.started,
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.users.isLoggedIn
     };
 };
 

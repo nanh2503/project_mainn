@@ -1,7 +1,23 @@
 {
     "homeheader": {
         "usermanagement": "User Management",
-        "name": "Ngoc Anh"
+        "name": "Ngoc Anh",
+        "welcome": "WELCOME TO MY WEBSITE",
+        "addNew": "Add new users",
+        "fullname": "Full Name",
+        "phone": "Phone Number",
+        "code": "Code",
+        "node": "Node",
+        "action": "Actions",
+        "password": "Password",
+        "image": "Avatar",
+        "add": "Add New",
+        "close": "Close",
+        "createNewUser": "Create a New User",
+        "upload": "Upload image",
+        "button": "Add new users",
+        "search": "search",
+        "save": "Save Changes"
     },
     "common": {
         "add": "Add",
@@ -34,7 +50,7 @@
             "header": "System",
             "system-administrator": {
                 "header": "System Administrator",
-                "user-manage": "User manage",
+                "users-manage": "User manage",
                 "product-manage": "Package manage",
                 "register-package-group-or-account": "Register service package for group/account"
             },
@@ -44,31 +60,31 @@
         }
     },
     "system": {
-        "user-manage": {
+        "users-manage": {
             "fail-to-load-fouser": "Fail to load system users list",
-            "user-id": "User ID",
+            "users-id": "User ID",
             "usertype": "User type",
-            "username": "Username",
-            "fullname": "Fullname",
+            "username": "User name",
+            "fullname": "Full name",
             "mobile": "Phone",
             "email": "Email",
             "status": "Status",
-            "add-user": "Add user",
-            "edit-user": "Edit user information",
+            "add-users": "Add users",
+            "edit-users": "Edit users information",
             "password": "Password",
             "retype-password": "Retype password",
-            "add-user-success": "Add user successfully",
-            "edit-user-success": "Change user information successfully",
-            "add-user-fail": "Fail to add user",
-            "edit-user-fail": "Fail to change user information",
-            "del-user-success": "Delete user successfully",
-            "del-user-fail": "Fail to delete user",
+            "add-users-success": "Add users successfully",
+            "edit-users-success": "Change users information successfully",
+            "add-users-fail": "Fail to add users",
+            "edit-users-fail": "Fail to change users information",
+            "del-users-success": "Delete users successfully",
+            "del-users-fail": "Fail to delete users",
             "invalid-input": {
                 "username": "Please fill in username",
                 "fullname": "Please fill in fullname",
                 "password": "Please fill in password"
             },
-            "sure-delete-user": "Are you sure to delete this user?"
+            "sure-delete-users": "Are you sure to delete this users?"
         },
         "product-manage": {
             "fail-to-load-foprtype": "Fail to load packages list",

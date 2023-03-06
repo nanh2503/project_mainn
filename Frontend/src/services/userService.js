@@ -8,7 +8,7 @@ const handleLogin = (email, password) => {
 
 const getAllUsers = (inputId) => {
     //template string
-    return axios.get(`/api/get-all-users?id=${inputId}`)
+    return axios.get(`/api/get-all-user?id=${inputId}`)
 }
 
 const createNewUserService = (data) => {
