@@ -93,7 +93,6 @@ class ModalUser extends Component {
 
     //lấy giá trị được lưu
     handleAddNewUser = () => {
-        console.log('before submit check state:', this.state)
         let isValid = this.checkValidInput();
         if (isValid === true) {
             //gọi API create modal
@@ -106,12 +105,7 @@ class ModalUser extends Component {
         let file = data[0];
         if (file) {
             let base64 = await CommonUtils.getBase64(file)
-            console.log('----------------------------')
-            console.log('base64 image:', base64)
             let objectUrl = URL.createObjectURL(file)
-            console.log('----------------------------')
-            console.log('URL', objectUrl)
-            console.log('----------------------------')
             this.setState({
                 previewImgURL: objectUrl,
                 image: base64

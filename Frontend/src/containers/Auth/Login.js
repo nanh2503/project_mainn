@@ -5,6 +5,7 @@ import * as actions from "../../store/actions";
 import './Login.scss';
 import { FormattedMessage } from 'react-intl';
 import { handleLogin } from '../../services/userService';
+import { toast } from 'react-toastify';
 
 class Login extends Component {
     constructor(props) {
@@ -42,7 +43,7 @@ class Login extends Component {
             }
             if (data && data.errCode === 0) {
                 this.props.userLoginSuccess(data.users)
-                console.log('login success')
+                toast.success("Login succeed!")
             }
         } catch (e) {
             if (e.response) {
@@ -53,7 +54,6 @@ class Login extends Component {
                 }
             }
             console.log(e.response);
-
         }
     }
 

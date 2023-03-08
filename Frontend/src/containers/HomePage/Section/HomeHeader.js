@@ -40,7 +40,6 @@ class HomeHeader extends Component {
                 previewImgURL: imageBase64
             })
         }
-        console.log("preview", this.state.previewImgURL)
     }
 
     getUserFromReact = async (id) => {
@@ -54,7 +53,9 @@ class HomeHeader extends Component {
     }
 
     async componentDidMount() {
-
+        let userInfo = this.props.userInfo;
+        let id = userInfo.id;
+        this.getUserFromReact(id);
     }
 
     toggleImage() {
@@ -63,11 +64,10 @@ class HomeHeader extends Component {
         })
     }
 
-
     render() {
         const { processLogout, language, userInfo } = this.props;
-        const id = userInfo.id
-        this.getUserFromReact(id)
+        // const id = userInfo.id
+        // this.getUserFromReact(id)
 
         return (
             <>
@@ -76,17 +76,17 @@ class HomeHeader extends Component {
                         <p><FormattedMessage id="homeheader.usermanagement" /></p>
                     </div>
                     <div className='center-header'>
-                        <i class="fas fa-bars"></i>
+                        <i className="fas fa-bars"></i>
 
                         <div className='logo-right'>
                             <i className="fas fa-suitcase"></i>
-                            <i class="fas fa-tags"></i>
-                            <i class="fas fa-envelope-open"></i>
-                            <i class="fas fa-bell"></i>
-                            <i class="fas fa-flag"></i>
-                            <i class="fas fa-users"></i>
-                            <i class="fas fa-user-md"></i>
-                            <i class="fas fa-map"></i>
+                            <i className="fas fa-tags"></i>
+                            <i className="fas fa-envelope-open"></i>
+                            <i className="fas fa-bell"></i>
+                            <i className="fas fa-flag"></i>
+                            <i className="fas fa-users"></i>
+                            <i className="fas fa-user-md"></i>
+                            <i className="fas fa-map"></i>
                         </div>
                     </div>
                     <div className='right-header'>
@@ -110,9 +110,6 @@ class HomeHeader extends Component {
                     </div>
 
                 </div>
-
-
-
 
                 <div className='home-content-container'>
                     <div className='home-content-left'>

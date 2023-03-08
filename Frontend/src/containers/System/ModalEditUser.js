@@ -37,7 +37,6 @@ class ModalEditUser extends Component {
 
     componentDidMount() {
         let users = this.props.currentUser;
-        console.log('user', users)
         if (users && !_.isEmpty(users)) {
             let imageBase64 = '';
             if (users.image) {
@@ -55,7 +54,6 @@ class ModalEditUser extends Component {
                 previewImgURL: imageBase64
             })
         }
-        console.log('didmount edit model', this.props.currentUser)
     }
 
     //cài đặt toggle

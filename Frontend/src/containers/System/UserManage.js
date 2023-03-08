@@ -9,6 +9,7 @@ import ModalEditUser from './ModalEditUser';
 import HomeHeader from '../HomePage/Section/HomeHeader';
 import { LANGUAGES } from '../../utils';
 import { changeLanguageApp } from '../../store/actions';
+import { toast } from 'react-toastify';
 
 class UserManage extends Component {
 
@@ -44,11 +45,9 @@ class UserManage extends Component {
 
     /**Kiểm soát hiển thị modal add new users*/
     handleAddNewUser = () => {
-        console.log("Add new")
         this.setState({
             isOpenModalUser: true,
         })
-        console.log("add")
     }
 
     /**Ẩn modal add new users */
@@ -60,13 +59,13 @@ class UserManage extends Component {
 
     /**lưu thông tin người dùng mới*/
     createNewUser = async (data) => {
-        console.log("go")
         try {
             let response = await createNewUserService(data)
             if (response && response.errCode !== 0) {
                 alert(response.errMessage)
             } else {
                 await this.getAllUserFromReact();
+                toast.success('Create new user succeed!')
                 this.setState({
                     isOpenModalUser: false
                 })
@@ -85,6 +84,7 @@ class UserManage extends Component {
             let res = await deleteUserService(users.id)
             if (res && res.errCode === 0) {
                 await this.getAllUserFromReact();
+                toast.success("Delete user succeed!")
             } else {
                 alert(res.errMessage)
             }
@@ -96,7 +96,6 @@ class UserManage extends Component {
 
     /**cài đặt modal edit users và lấy thông tin users  */
     handleEditUser = (users) => {
-        console.log('check edit users', users.id)
         this.setState({
             isOpenModalEditUser: true,
             userEdit: users
@@ -112,7 +111,6 @@ class UserManage extends Component {
 
     /**Edit users function */
     editUser = async (users) => {
-        console.log('hello')
         try {
             let res = await editUserService(users)
             if (res && res.errCode === 0) {
@@ -120,6 +118,7 @@ class UserManage extends Component {
                     isOpenModalEditUser: false
                 })
                 await this.getAllUserFromReact();
+                toast.success('Edit user succeed!')
             } else {
                 alert(res.errCode)
             }
@@ -156,7 +155,7 @@ class UserManage extends Component {
                         <div className='mx-3'>
                             <button className='btn btn-success px-3'
                                 onClick={() => this.handleAddNewUser()}
-                            ><i class="fas fa-plus"></i><FormattedMessage id="homeheader.button" /> </button>
+                            ><i className="fas fa-plus"></i><FormattedMessage id="homeheader.button" /> </button>
                         </div>
 
 
