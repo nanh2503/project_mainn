@@ -2,6 +2,7 @@ import { response } from 'express';
 import db from '../models/index'
 import CRUDService from '../services/CRUDService';
 
+/**get Home page */
 let getHomePage = async (req, res) => {
     try {
         let data = await db.users.findAll();
@@ -16,16 +17,19 @@ let getHomePage = async (req, res) => {
 
 }
 
+/**get user in CRUD */
 let getCRUD = (req, res) => {
     return res.render('crud.ejs')
 }
 
+/**create new user in CRUD*/
 let postCRUD = async (req, res) => {
     let message = await CRUDService.createNewUser(req.body);
     console.log(message);
     return res.redirect('/get-crud');
 }
 
+/**display CRUD */
 let displayCRUD = async (req, res) => {
     let data = await CRUDService.getAllUser();
     return res.render('displayCRUD.ejs', {
@@ -33,6 +37,7 @@ let displayCRUD = async (req, res) => {
     })
 }
 
+/**edit user in CRUD */
 let editCRUD = async (req, res) => {
     let userId = req.query.id;
     if (userId) {
@@ -49,12 +54,14 @@ let editCRUD = async (req, res) => {
 
 }
 
+/**upadte user in CRUD */
 let putCRUD = async (req, res) => {
     let data = req.body;
     await CRUDService.updateUserData(data);
     return res.redirect("/get-crud");
 }
 
+/**delete user in CRUD */
 let deleteCRUD = async (req, res) => {
     let id = req.query.id;
     if (id) {
@@ -65,7 +72,7 @@ let deleteCRUD = async (req, res) => {
     }
 }
 
-//object:{key, value}
+/**export object:{key, value}*/
 module.exports = {
     getHomePage: getHomePage,
     getCRUD: getCRUD,

@@ -1,5 +1,6 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+/**create table users and declare all atributes of this table */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('users', {

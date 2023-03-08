@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import { render } from 'node-sass';
-import * as actions from "../../store/actions"
+import * as actions from "../../store/actions";
 
 class UserRedux extends Component {
     constructor(props) {

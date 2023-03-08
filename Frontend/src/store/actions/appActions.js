@@ -1,5 +1,6 @@
 import actionTypes from './actionTypes';
 
+/**set up app actions */
 export const appStartUpComplete = () => ({
     type: actionTypes.APP_START_UP_COMPLETE
 });

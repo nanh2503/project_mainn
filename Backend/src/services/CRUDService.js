@@ -1,12 +1,14 @@
 import bcrypt from 'bcryptjs';
 import db from '../models/index';
 
+/**format to hash password */
 const salt = bcrypt.genSaltSync(10);
 
+/**create a new user */
 let createNewUser = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-
+            /**get data user from request */
             let hashPasswordFromBcrypt = await hashUserPassword(data.password);
             await db.users.create({
                 email: data.email,
@@ -25,6 +27,7 @@ let createNewUser = async (data) => {
     })
 }
 
+/**hash password */
 let hashUserPassword = (password) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -36,11 +39,12 @@ let hashUserPassword = (password) => {
     })
 }
 
+/**get all users */
 let getAllUser = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let users = db.users.findAll({
-                raw: true,      //chỉ lấy những thông tin có trong bảng
+                raw: true,      //only get the info from table
             });
             resolve(users)
         } catch (e) {
@@ -49,6 +53,7 @@ let getAllUser = () => {
     })
 }
 
+/**get user by id */
 let getUserInforById = (userId) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -70,6 +75,10 @@ let getUserInforById = (userId) => {
     })
 }
 
+/**update user data after edit 
+ * get user info by id
+ * update user data
+*/
 let updateUserData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -96,6 +105,10 @@ let updateUserData = (data) => {
 
 }
 
+/**delete user by id
+ * get user by id
+ * delete user
+ */
 let deleteUserById = (userId) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -115,6 +128,7 @@ let deleteUserById = (userId) => {
     })
 }
 
+/**export all functions */
 module.exports = {
     createNewUser: createNewUser,
     getAllUser: getAllUser,

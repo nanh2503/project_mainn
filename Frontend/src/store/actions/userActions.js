@@ -1,5 +1,6 @@
 import actionTypes from './actionTypes';
 
+/**set up user actions */
 export const addUserSuccess = () => ({
     type: actionTypes.ADD_USER_SUCCESS
 })

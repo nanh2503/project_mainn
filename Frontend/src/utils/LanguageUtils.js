@@ -1,6 +1,7 @@
 import messages_vi from '../translations/vi.json';
 import messages_en from '../translations/en.json';
 
+/**set up change language */
 const flattenMessages = ((nestedMessages, prefix = '') => {
     if (nestedMessages == null) {
         return {}

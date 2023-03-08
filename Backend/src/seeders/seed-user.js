@@ -1,5 +1,6 @@
 'use strict';
 
+/**create first user in table users */
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     up: async (queryInterface, Sequelize) => {

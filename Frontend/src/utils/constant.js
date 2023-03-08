@@ -1,3 +1,4 @@
+/**set constant */
 export const path = {
     HOME: '/',
     HOMEPAGE: '/home',

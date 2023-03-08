@@ -8,9 +8,10 @@ import { getAllUsers } from '../../../services/userService';
 import * as actions from "../../../store/actions";
 import UserManage from '../../System/UserManage';
 import { Buffer } from 'buffer';
-import _ from 'lodash';     //làm việc với mảng dễ dàng hơn
+import _ from 'lodash';     //work with array more easily
 
 class HomeHeader extends Component {
+    /**initialize the variables */
     constructor(props) {
         super(props);
         this.state = {
@@ -20,14 +21,18 @@ class HomeHeader extends Component {
             isOpenImage: false,
             user: [],
         }
+        /**hind image */
         this.toggleImage = this.toggleImage.bind(this)
     }
 
+    /**fire redux event: actions 
+     * change language
+    */
     changeLanguage = (language) => {
-        /**fire redux event: actions */
         this.props.changeLanguageAppRedux(language)
     }
 
+    /**set avatar */
     setAvatar = () => {
         let user = this.state.user;
         if (user && !_.isEmpty(user)) {
@@ -42,6 +47,7 @@ class HomeHeader extends Component {
         }
     }
 
+    /**get user by id */
     getUserFromReact = async (id) => {
         let response = await getAllUsers(id);
         if (response && response.errCode === 0) {
@@ -52,12 +58,14 @@ class HomeHeader extends Component {
         this.setAvatar();
     }
 
+    /**get id from userInfo */
     async componentDidMount() {
         let userInfo = this.props.userInfo;
         let id = userInfo.id;
         this.getUserFromReact(id);
     }
 
+    /**set toggle of image */
     toggleImage() {
         this.setState({
             isOpenImage: !this.state.isOpenImage
@@ -66,8 +74,6 @@ class HomeHeader extends Component {
 
     render() {
         const { processLogout, language, userInfo } = this.props;
-        // const id = userInfo.id
-        // this.getUserFromReact(id)
 
         return (
             <>

@@ -1,3 +1,4 @@
+/**change image type to base64 */
 class CommonUtils {
     static getBase64(file) {
         return new Promise((resolve, reject) => {

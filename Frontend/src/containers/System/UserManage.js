@@ -6,14 +6,12 @@ import { getAllUsers, createNewUserService, deleteUserService, editUserService }
 import ModalUser from './ModalUser';
 import { emitter } from '../../utils/emitter';
 import ModalEditUser from './ModalEditUser';
-import HomeHeader from '../HomePage/Section/HomeHeader';
-import { LANGUAGES } from '../../utils';
 import { changeLanguageApp } from '../../store/actions';
 import { toast } from 'react-toastify';
 
 class UserManage extends Component {
 
-    /**khởi tạo các state muốn dùng trong class*/
+    /**initialize the variables*/
     constructor(props) {
         super(props);
         this.state = {
@@ -28,12 +26,12 @@ class UserManage extends Component {
         await this.getAllUserFromReact();
     }
 
+    /**fire redux event: actions */
     changeLanguage = (language) => {
-        /**fire redux event: actions */
         this.props.changeLanguageAppRedux(language)
     }
 
-    /**Hiển thị danh sách all users  */
+    /**Show list of users  */
     getAllUserFromReact = async () => {
         let response = await getAllUsers('All');
         if (response && response.errCode === 0) {
@@ -43,21 +41,21 @@ class UserManage extends Component {
         }
     }
 
-    /**Kiểm soát hiển thị modal add new users*/
+    /**set up show modal add new users*/
     handleAddNewUser = () => {
         this.setState({
             isOpenModalUser: true,
         })
     }
 
-    /**Ẩn modal add new users */
+    /**set up toggle of form add new user */
     toggleUserModal = (data) => {
         this.setState({
             isOpenModalUser: !this.state.isOpenModalUser
         })
     }
 
-    /**lưu thông tin người dùng mới*/
+    /**save user info*/
     createNewUser = async (data) => {
         try {
             let response = await createNewUserService(data)
@@ -70,7 +68,7 @@ class UserManage extends Component {
                     isOpenModalUser: false
                 })
 
-                /**clear data in modal after add new users*/
+                //clear data in modal after add new users
                 emitter.emit('EVENT_CLEAR_MODAL_DATA')
             }
         } catch (e) {
@@ -78,7 +76,7 @@ class UserManage extends Component {
         }
     }
 
-    /**Xóa người dùng */
+    /**Delete user */
     handleDeleteUser = async (users) => {
         try {
             let res = await deleteUserService(users.id)
@@ -94,7 +92,7 @@ class UserManage extends Component {
 
     }
 
-    /**cài đặt modal edit users và lấy thông tin users  */
+    /**set up modal edit users and get user info*/
     handleEditUser = (users) => {
         this.setState({
             isOpenModalEditUser: true,
@@ -102,7 +100,7 @@ class UserManage extends Component {
         })
     }
 
-    /**Ẩn modal edit users  */
+    /**set up toggle form edit user */
     toggleEditUserModal = (data) => {
         this.setState({
             isOpenModalEditUser: !this.state.isOpenModalEditUser
@@ -202,16 +200,19 @@ class UserManage extends Component {
 
 }
 
+/**state of redux */
 const mapStateToProps = state => {
     return {
-        language: state.app.language,       //state of redux
+        language: state.app.language,
     };
 };
 
+/**events of redux */
 const mapDispatchToProps = dispatch => {
     return {
         changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
     };
 };
 
+/**connect between react and redux */
 export default connect(mapStateToProps, mapDispatchToProps)(UserManage);

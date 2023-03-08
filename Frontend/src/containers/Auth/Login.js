@@ -7,6 +7,7 @@ import { handleLogin } from '../../services/userService';
 import { toast } from 'react-toastify';
 
 class Login extends Component {
+    /**initialize the varibales */
     constructor(props) {
         super(props);
         this.state = {
@@ -17,18 +18,21 @@ class Login extends Component {
         }
     }
 
+    /**get user name */
     handleOnChangeUsername = (event) => {
         this.setState({
             username: event.target.value
         })
     }
 
+    /**get user password */
     handleOnChangePassword = (event) => {
         this.setState({
             password: event.target.value
         })
     }
 
+    /**login function */
     handleLogin = async () => {
         this.setState({
             errMessage: ''
@@ -56,12 +60,14 @@ class Login extends Component {
         }
     }
 
+    /**setting hind or show password */
     handleShowPassword = () => {
         this.setState({
             isShowPassword: !this.state.isShowPassword
         })
     }
 
+    /**setup background in login URL */
     render() {
         //JSX
         return (

@@ -14,6 +14,7 @@ import { LanguageUtils } from '../utils'
 
 const messages = LanguageUtils.getFlattenedMessages();
 
+/**change language between English and Vietnamese */
 class IntlProviderWrapper extends Component {
 
     render() {
@@ -29,6 +30,7 @@ class IntlProviderWrapper extends Component {
     }
 }
 
+/**save state of redux */
 const mapStateToProps = state => {
     return {
         language: state.app.language

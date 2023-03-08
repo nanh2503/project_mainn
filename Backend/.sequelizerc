@@ -1,4 +1,4 @@
-//To specify the paths to specific files required by Sequelize.
+//**To specify the paths to specific files required by Sequelize. */
 
 const path = require('path');
 

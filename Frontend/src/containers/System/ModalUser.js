@@ -7,11 +7,9 @@ import { emitter } from '../../utils/emitter';
 import './ModalUser.scss';
 import { LANGUAGES, CommonUtils } from '../../utils';
 import { changeLanguageApp } from '../../store/actions';
-import { Buffer } from 'buffer';
-import HomeHeader from '../HomePage/Section/HomeHeader';
 
 class ModalUser extends Component {
-    /**khởi tạo giá trị*/
+    /**initialize the variables*/
     constructor(props) {
         super(props);
         this.state = {
@@ -36,7 +34,7 @@ class ModalUser extends Component {
         this.props.changeLanguageAppRedux(language)
     }
 
-    //clear data in modal after add new users
+    /**clear data in modal after add new users*/
     listenToEmitter() {
         emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
             //reset state
@@ -57,18 +55,19 @@ class ModalUser extends Component {
     componentDidMount() {
     }
 
-    //cài đặt toggle
+    /**set up toggle of format */
     toggle = () => {
         this.props.toggleParent();
     }
 
+    /**set up toggle of image */
     toggleImage() {
         this.setState({
             isOpenImage: !this.state.isOpenImage
         })
     }
 
-    //set state giá trị cho các biến
+    /**set state value for variables */
     hanleOnChangeInput = (event, id) => {
         let copyState = { ...this.state };
         copyState[id] = event.target.value;
@@ -77,7 +76,7 @@ class ModalUser extends Component {
         })
     }
 
-    //check giá trị nhập vào
+    /**check validity of input */
     checkValidInput = () => {
         let isValid = true;
         let arrInput = ['email', 'password', 'fullname', 'code', 'node', 'phonenum'];
@@ -91,15 +90,16 @@ class ModalUser extends Component {
         return isValid;
     }
 
-    //lấy giá trị được lưu
+    /**get values */
     handleAddNewUser = () => {
         let isValid = this.checkValidInput();
         if (isValid === true) {
-            //gọi API create modal
+            //call API
             this.props.createNewUser(this.state);
         }
     }
 
+    /**get image from input */
     handleOnchangeImage = async (event) => {
         let data = event.target.files;
         let file = data[0];
@@ -214,16 +214,19 @@ class ModalUser extends Component {
 
 }
 
+/**state of redux */
 const mapStateToProps = state => {
     return {
-        language: state.app.language,       //state of redux
+        language: state.app.language,
     };
 };
 
+/**events of redux */
 const mapDispatchToProps = dispatch => {
     return {
         changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
     };
 };
 
+/**connect between react and redux */
 export default connect(mapStateToProps, mapDispatchToProps)(ModalUser);

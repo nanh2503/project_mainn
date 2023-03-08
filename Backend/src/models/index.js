@@ -1,6 +1,8 @@
 'use strict';
 require('dotenv').config();
-
+/**handles app startup
+ * routing and other functions 
+ * require other modules to add functionality.  */
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');

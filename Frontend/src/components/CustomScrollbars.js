@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import './CustomScrollbars.scss';
-
+/**setup Scrollbars */
 class CustomScrollbars extends Component {
 
     ref = React.createRef();

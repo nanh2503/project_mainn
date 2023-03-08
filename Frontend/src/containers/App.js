@@ -9,8 +9,6 @@ import { path } from '../utils'
 import Home from '../routes/Home';
 import Login from './Auth/Login';
 import System from '../routes/System';
-import { CustomToastCloseButton } from '../components/CustomToast';
-import HomePage from './HomePage/Section/HomePage.js';
 import CustomScrollbars from '../components/CustomScrollbars';
 
 class App extends Component {
@@ -37,27 +35,21 @@ class App extends Component {
         return (
             <Fragment>
                 <Router history={history}>
-                    {/* save data when refresh avoid calling data many times */}
+                    {/** save data when refresh avoid calling data many times */}
                     <div className="main-container">
 
                         <div className="content-container">
                             <CustomScrollbars style={{ height: '100vh', width: '100%' }}>
                                 <Switch>
+                                    {/**Switch URL */}
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
-                                    <Route path={path.HOMEPAGE} component={HomePage} />
                                 </Switch>
                             </CustomScrollbars>
                         </div>
 
-                        {/* Hiện thông báo về hành động */}
-                        {/* <ToastContainer
-                            className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
-                            autoClose={false} hideProgressBar={true} pauseOnHover={false}
-                            pauseOnFocusLoss={true} closeOnClick={false} draggable={false}
-                            closeButton={<CustomToastCloseButton />}
-                        /> */}
+                        {/** show notifications about actions */}
 
                         <ToastContainer
                             position="bottom-right"
@@ -78,6 +70,7 @@ class App extends Component {
     }
 }
 
+/**save state of redux */
 const mapStateToProps = state => {
     return {
         started: state.app.started,
@@ -85,6 +78,7 @@ const mapStateToProps = state => {
     };
 };
 
+/**save events of redux */
 const mapDispatchToProps = dispatch => {
     return {
     };

@@ -7,11 +7,11 @@ import { emitter } from '../../utils/emitter';
 import './ModalEditUser.scss';
 import { LANGUAGES, CommonUtils } from '../../utils';
 import { changeLanguageApp } from '../../store/actions';
-import _ from 'lodash';     //làm việc với mảng dễ dàng hơn
+import _ from 'lodash';     //work with array more easily
 import { Buffer } from 'buffer';
 
 class ModalEditUser extends Component {
-    /**khởi tạo giá trị*/
+    /**initialize the variables*/
     constructor(props) {
         super(props);
         this.state = {
@@ -35,6 +35,7 @@ class ModalEditUser extends Component {
         this.props.changeLanguageAppRedux(language)
     }
 
+    /**set avatar */
     componentDidMount() {
         let users = this.props.currentUser;
         if (users && !_.isEmpty(users)) {
@@ -56,18 +57,19 @@ class ModalEditUser extends Component {
         }
     }
 
-    //cài đặt toggle
+    /**set up toggle of form*/
     toggle = () => {
         this.props.toggleEditUserModal();
     }
 
+    /**set toggle of image */
     toggleImage() {
         this.setState({
             isOpenImage: !this.state.isOpenImage
         })
     }
 
-    //set state giá trị cho các biến
+    /**set state value for variables */
     hanleOnChangeInput = (event, id) => {
         let copyState = { ...this.state };
         copyState[id] = event.target.value;
@@ -76,7 +78,7 @@ class ModalEditUser extends Component {
         })
     }
 
-    //check giá trị nhập vào
+    /**check validity of input */
     checkValidInput = () => {
         let isValid = true;
         let arrInput = ['email', 'password', 'fullname', 'code', 'node', 'phonenum'];
@@ -91,15 +93,16 @@ class ModalEditUser extends Component {
     }
 
 
-    //lấy giá trị được lưu
+    /**get values */
     handleSaveUser = () => {
         let isValid = this.checkValidInput();
         if (isValid === true) {
-            //gọi API edit users  modal
+            //call API
             this.props.editUser(this.state);
         }
     }
 
+    /**get image from input */
     handleOnchangeImage = async (event) => {
         let data = event.target.files;
         let file = data[0];
@@ -217,17 +220,18 @@ class ModalEditUser extends Component {
 
 }
 
-
+/**state of redux */
 const mapStateToProps = state => {
     return {
-        language: state.app.language,       //state of redux
+        language: state.app.language,
     };
 };
 
+/**events of redux */
 const mapDispatchToProps = dispatch => {
     return {
         changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
     };
 };
-
+/**connect between react and redux */
 export default connect(mapStateToProps, mapDispatchToProps)(ModalEditUser);

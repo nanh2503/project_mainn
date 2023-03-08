@@ -1,3 +1,4 @@
+/**change the data type of image from string to blob */
 module.exports = {
     up: (queryInterface, Sequelize) => {
         return Promise.all([

@@ -5,6 +5,7 @@ import CustomScrollBar from '../components/CustomScrollbars';
 
 import './CustomToast.scss';
 
+/**setup Toast to show the notifications of actions*/
 class CustomToast extends Component {
 
     render() {
@@ -44,6 +45,7 @@ class CustomToast extends Component {
     }
 }
 
+/**Close toast */
 export class CustomToastCloseButton extends Component {
 
     render() {

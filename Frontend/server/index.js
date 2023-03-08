@@ -1,3 +1,7 @@
+/**handles app startup
+ * routing and other functions 
+ * require other modules to add functionality.  */
+
 const express = require('express');
 const path = require('path');
 
@@ -19,9 +23,9 @@ if (logRequests) {
     console.log('The server will log all incoming request. It\'s not recommended for production use.');
 }
 
-// Serve the static files from the React app
+/**Serve the static files from the React app*/
 app.use(subDir, express.static(buildDir));
-// Handles any requests that don't match the ones above
+/**Handles any requests that don't match the ones above*/
 app.get('*', (req, res) => {
     if (logRequests) {
         console.log(req.method + ' ' + req.url);

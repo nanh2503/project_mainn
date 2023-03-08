@@ -1,12 +1,13 @@
 import db from "../models/index";
 import bcrypt from 'bcryptjs';
 
+/**format to hash password */
 const salt = bcrypt.genSaltSync(10);
 
+/**hash user password */
 let hashUserPassword = (password) => {
     return new Promise(async (resolve, reject) => {
         try {
-
             const hashPassword = await bcrypt.hashSync(password, salt);
             resolve(hashPassword);
         } catch (e) {
@@ -15,6 +16,7 @@ let hashUserPassword = (password) => {
     })
 }
 
+/**login function */
 let handleUserLogin = (email, password) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -25,7 +27,6 @@ let handleUserLogin = (email, password) => {
 
                 //users already exist
                 let users = await db.users.findOne({
-
                     where: { email: email },
                     attributes: ['id', 'email', 'password', 'fullname'],
                     raw: true
@@ -62,6 +63,7 @@ let handleUserLogin = (email, password) => {
     })
 }
 
+/**check user email */
 let checkUserEmail = (email) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -79,6 +81,10 @@ let checkUserEmail = (email) => {
     })
 }
 
+/**get all users from table by id
+ * if id='All' => get all users
+ * if id!='All' => get one user by userId
+ */
 let getAllUsers = (userId) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -106,6 +112,7 @@ let getAllUsers = (userId) => {
     })
 }
 
+/**create a new user */
 let createNewUser = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -141,6 +148,7 @@ let createNewUser = (data) => {
     })
 }
 
+/**delete user by id */
 let deleteUser = (idInput) => {
     return new Promise(async (resolve, reject) => {
         let users = await db.users.findOne({
@@ -154,6 +162,7 @@ let deleteUser = (idInput) => {
             })
         }
 
+        //delete user
         await db.users.destroy({
             where: { id: idInput }
         })
@@ -164,6 +173,7 @@ let deleteUser = (idInput) => {
     })
 }
 
+/**update user by id after edit */
 let updateUserData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -206,7 +216,7 @@ let updateUserData = (data) => {
     })
 }
 
-
+/**export all functions */
 module.exports = {
     handleUserLogin: handleUserLogin,
     getAllUsers: getAllUsers,
