@@ -1,5 +1,4 @@
 import express from "express";
-import homeController from "../controllers/homeController";
 import userController from "../controllers/userController";
 
 let router = express.Router();
@@ -12,13 +11,6 @@ let router = express.Router();
  * put: update info
 */
 let initWebRoutes = (app) => {
-    router.get('/', homeController.getHomePage);
-    router.get('/crud', homeController.getCRUD);
-    router.post('/post-crud', homeController.postCRUD);
-    router.get('/get-crud', homeController.displayCRUD);
-    router.get('/edit-crud', homeController.editCRUD);
-    router.get('/delete-crud', homeController.deleteCRUD);
-    router.post('/put-crud', homeController.putCRUD);
     router.post('/api/login', userController.handleLogin);
     router.get('/api/get-all-user', userController.handleGetAllUsers);
     router.post('/api/create-new-user', userController.handleCreateNewUser);
